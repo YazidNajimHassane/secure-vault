@@ -5,13 +5,13 @@ from  models import User , Password
 from encryption import encrypt_password , decrypt_password
 
 #home page
-@app.route('/')
+@app.route('/' , methods=["POST" , "GET"])
 def home():
     return render_template("home.html")
 
 
 #register page 
-@app.route('/register' , methods=["POST"])
+@app.route('/register' , methods=["POST" , "GET"])
 def register():
     username = request.form.get("username")
     password_master = request.form.get("password")
@@ -62,10 +62,10 @@ def dashboard():
 
 
 #the add_password route 
-@app.route("/add_Password", methods=["POST", "GET"])
+@app.route("/add_password", methods=["POST", "GET"])
 def add_password():
     if 'user_id' not in session:
-        return redirect("url_for('login')")
+        return redirect(url_for('login'))
     if request.method=="POST":
         site_name=request.form.get("site_name")
         password= request.form.get("password")
@@ -87,10 +87,10 @@ def add_password():
 
 
 #the remove_password route 
-@app.route("/remove_Password/<int:id>", methods=["POST", "GET"])
+@app.route("/remove_password/<int:id>", methods=["POST", "GET"])
 def remove_password(id):
     if 'user_id' not in session:
-        return redirect("url_for('login')")
+        return redirect(url_for('login'))
     
     password=Password.query.get(id)
 
@@ -105,5 +105,5 @@ def remove_password(id):
 #the logout route 
 @app.route("/logout" ,methods=["POST"])
 def logout():
-    session.clear
+    session.clear()
     return redirect(url_for("login"))

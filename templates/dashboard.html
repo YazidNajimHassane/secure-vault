@@ -3,9 +3,7 @@
 <div class="container">
     {% if passwords | length  < 1 %}
         <h3>There are no passwords saved </h3>
-        <input type="button" value="add_password" >
-        <input type="button" value="Log_Out" >
-        {%else%}
+    {%else%}
         <h3>Your Passwords</h3>
         <table>
             <tr>
@@ -26,7 +24,7 @@
             {%endfor%}
         </table>
     {% endif %}
-    <a href="{{url_for('add_password')}}">Add Password</a>
+    <a href="{{url_for('add_password')}}" ><button>Add Password</button></a>
     <form action="{{url_for('logout')}}" method="POST">
         <button type="submit"> LogOut</button>
     </form>

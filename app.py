@@ -1,12 +1,13 @@
 from flask import Flask 
 from models import db 
 
-
 app= Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///users.db"
+app.secret_key = "mysecretkey123"
 db.init_app(app)
 
+import routes
 
 if __name__ == "__main__":
     with app.app_context():

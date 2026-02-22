@@ -2,18 +2,20 @@
 {% block body %}
 <div class="container">
     <h1>Welcome</h1>
-    <form id="mainForm"action="" method="POST">
+    <form id="mainForm"action="" method="post">
         <input 
         type="text"
         name="username"
         id="username"
+        placeholder="username"
         >
         <input
         type="password"
         name="password"
         id="password"
+        placeholder="password"
         >
-        <input type="submit" value="login" class="btn btn_login" onclick="setactionform('login')">
+        <input type="button" value="login" class="btn btn_login" onclick="setactionform('login')">
         <input type="button" value="register" class="btn btn_register" onclick="setactionform('register')">
     </form>
 </div>
@@ -21,11 +23,11 @@
     function setactionform(action){
         let form=document.getElementById("mainForm")
         if (action=='login') {
-            form.action="{{url_for('login') |tojson}}";
+            form.action="{{url_for('login')}}";
             form.method="post";
             form.submit();
         }else if(action=='register') {
-            form.action="{{url_for('register') |tojson}}";
+            form.action="{{url_for('register')}}";
             form.method="post";
             form.submit();
     }
