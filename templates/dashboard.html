@@ -1,0 +1,35 @@
+{% extends "base.html"%}
+{%block body%}
+<div class="container">
+    {% if passwords | length  < 1 %}
+        <h3>There are no passwords saved </h3>
+        <input type="button" value="add_password" >
+        <input type="button" value="Log_Out" >
+        {%else%}
+        <h3>Your Passwords</h3>
+        <table>
+            <tr>
+                <th>site_name</th>
+                <th>password</th>
+                <th><button>delete password</button></th>
+            </tr>
+            {%for p in passwords %}
+                <tr>
+                    <td>{{p.site_name}}</td>
+                    <td>{{p.encrypted_password}}</td>    
+                    <td>
+                        <form action="{{url_for('remove_password',id=p.id)}}" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {%endfor%}
+        </table>
+    {% endif %}
+    <a href="{{url_for('add_password')}}">Add Password</a>
+    <form action="{{url_for('logout')}}" method="POST">
+        <button type="submit"> LogOut</button>
+    </form>
+</div>
+    
+{%endblock%}
