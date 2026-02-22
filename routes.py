@@ -33,6 +33,7 @@ def register():
 
 
 
+#the login route 
 @app.route('/login' , methods=["POST" , "GET"])
 def login():
     if request.method=="POST":
@@ -50,7 +51,7 @@ def login():
         return redirect(url_for("dashboard"))
     return render_template('login.html')
 
-
+#the dashboard route
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
@@ -59,3 +60,50 @@ def dashboard():
     passwords= Password.query.filter_by(user_id=user.id).all()
     return render_template("dashboard.html" , passwords=passwords)
 
+
+#the add_password route 
+@app.route("/add_Password", methods=["POST", "GET"])
+def add_password():
+    if 'user_id' not in session:
+        return redirect("url_for('login')")
+    if request.method=="POST":
+        site_name=request.form.get("site_name")
+        password= request.form.get("password")
+
+        #encrypt the password
+        iv, ciphertext=encrypt_password(password)
+
+        new_password=Password()
+        new_password.site_name=site_name
+        new_password.encrypted_password=ciphertext
+        new_password.user_id=session['user_id']
+
+        db.session.add(new_password)
+        db.session.commit()
+
+        return redirect(url_for("dashboard"))
+    
+    return render_template("add_password.html")
+
+
+#the remove_password route 
+@app.route("/remove_Password/<int:id>", methods=["POST", "GET"])
+def remove_password(id):
+    if 'user_id' not in session:
+        return redirect("url_for('login')")
+    
+    password=Password.query.get(id)
+
+    if password.user_id != session["user_id"]:
+        return "Unauthorized !!"
+    
+    db.session.delete(password)
+    db.session.commit()
+    return redirect(url_for("dashboard"))
+
+
+#the logout route 
+@app.route("/logout" ,methods=["POST"])
+def logout():
+    session.clear
+    return redirect(url_for("login"))
