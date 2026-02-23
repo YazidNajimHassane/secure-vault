@@ -5,16 +5,18 @@
         <h3>There are no passwords saved </h3>
     {%else%}
         <h3>Your Passwords</h3>
-        <table>
+        <table border="1">
             <tr>
-                <th>site_name</th>
-                <th>password</th>
-                <th><button>delete password</button></th>
+                <th>Id</th>
+                <th>Site_name</th>
+                <th>Password</th>
+                <th>Optional action</th>
             </tr>
             {%for p in passwords %}
                 <tr>
+                    <td>{{p.id}}</td>
                     <td>{{p.site_name}}</td>
-                    <td>{{p.encrypted_password}}</td>    
+                    <td>{{p.password}}</td>    
                     <td>
                         <form action="{{url_for('remove_password',id=p.id)}}" method="POST">
                             <button type="submit">Delete</button>
