@@ -49,7 +49,7 @@ def login():
         session['user_id']=user.id
 
         return redirect(url_for("dashboard"))
-    return render_template('login.html')
+    return render_template('home.html')
 
 #the dashboard route
 @app.route('/dashboard')
@@ -58,7 +58,15 @@ def dashboard():
         return redirect(url_for("login"))
     user=User.query.get(session['user_id'])
     passwords= Password.query.filter_by(user_id=user.id).all()
-    return render_template("dashboard.html" , passwords=passwords)
+    decrypted=[]
+    for p in passwords:
+        decrypted.append({
+            'id':p.id,
+            'site_name':p.site_name,
+            'password':decrypt_password(p.iv,p.encrypted_password)
+
+        })
+    return render_template("dashboard.html" , passwords=decrypted)
 
 
 #the add_password route 
@@ -76,6 +84,7 @@ def add_password():
         new_password=Password()
         new_password.site_name=site_name
         new_password.encrypted_password=ciphertext
+        new_password.iv=iv
         new_password.user_id=session['user_id']
 
         db.session.add(new_password)
