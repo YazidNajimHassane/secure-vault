@@ -1,0 +1,116 @@
+body {
+    background-color: #1a1a2e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #eee;
+}
+
+.container {
+    margin: 80px auto;
+    padding: 40px;
+    display: block;
+    border: none;
+    border-radius: 16px;
+    max-width: 700px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    background-color: #16213e;
+}
+
+.inputs {
+    width: 100%;
+    height: 50px;
+    border-radius: 12px;
+    border: 1px solid #0f3460;
+    margin-bottom: 12px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    color: #eee;
+    background-color: #0f3460;
+    outline: none;
+}
+
+.inputs:focus {
+    border: 1px solid #e94560;
+}
+
+table {
+    margin: 0 auto;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+h1 {
+    margin: 20px auto;
+    text-align: center;
+    font-size: 2.5rem;
+    color: #e94560;
+}
+
+.btn {
+    padding: 10px;
+    margin: 10px 20px;
+    width: 30%;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.btn_register {
+    background-color: #e94560;
+}
+.btn_register:hover {
+    background-color: #c73652;
+}
+
+.btn_login {
+    background-color: #0f3460;
+}
+.btn_login:hover {
+    background-color: #1a5276;
+}
+
+.btn_logout {
+    background-color: #e94560;
+}
+.btn_logout:hover {
+    background-color: #c73652;
+}
+
+.btn_add {
+    background-color: #0f3460;
+}
+.btn_add:hover {
+    background-color: #1a5276;
+}
+
+.btn_delete {
+    background-color: #e94560;
+}
+.btn_delete:hover {
+    background-color: #c73652;
+}
+
+.btn_valide {
+    background-color: #0f3460;
+}
+.btn_valide:hover {
+    background-color: #1a5276;
+}
+
+td {
+    font-weight: bold;
+    color: #eee;
+    padding: 10px;
+}
+
+th {
+    background-color: #0f3460;
+    height: 35px;
+    color: #e94560;
+    padding: 10px;
+}
