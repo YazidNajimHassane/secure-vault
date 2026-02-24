@@ -21,7 +21,10 @@
         <input type="button" value="register" class="btn btn_register" onclick="setactionform('register')">
     </form>
     {% if error %}
-        <p >{{ error }} ! ! !</p>
+        <p  id="error">{{ error }} ! ! !</p>
+    {% endif %}
+    {% if succes %}
+        <p id="succes">{{ succes }} ! ! !</p>
     {% endif %}
 </div>
 <script>
