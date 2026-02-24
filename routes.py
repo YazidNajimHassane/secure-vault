@@ -83,6 +83,8 @@ def add_password():
     if request.method=="POST":
         site_name=request.form.get("site_name")
         password= request.form.get("password")
+        if not site_name or not password :
+            return render_template("add_password.html" , error="Please fill all fields")
 
         #encrypt the password
         iv, ciphertext=encrypt_password(password)
