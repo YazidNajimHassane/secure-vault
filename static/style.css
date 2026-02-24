@@ -114,8 +114,13 @@ th {
     color: #e94560;
     padding: 10px;
 }
-p{
+#error{
     color: red;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+#succes{
+    color: green;
     font-size: 1.3rem;
     font-weight: bold;
 }
