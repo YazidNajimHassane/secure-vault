@@ -4,13 +4,13 @@ from app import app , db
 from  models import User , Password
 from encryption import encrypt_password , decrypt_password
 
-#home page
+#home route
 @app.route('/' , methods=["POST" , "GET"])
 def home():
     return render_template("home.html")
 
 
-#register page 
+#register route
 @app.route('/register' , methods=["POST" , "GET"])
 def register():
     username = request.form.get("username")
