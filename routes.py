@@ -32,7 +32,7 @@ def register():
     db.session.add(new_user)
     db.session.commit()
     
-    return redirect(url_for('login'))
+    return render_template("home.html", succes="You have been successfully registered")
 
 
 
