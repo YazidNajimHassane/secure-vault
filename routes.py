@@ -16,6 +16,9 @@ def register():
     username = request.form.get("username")
     password_master = request.form.get("password")
 
+    if username =="" or password_master=="":
+        return render_template("home.html", error="Please fill all fields")
+
     #check if user already exists
     user = User.query.filter_by(username=username).first()
     if user:
@@ -40,11 +43,14 @@ def login():
         username = request.form.get("username")
         password_master = request.form.get("password")
 
+        if username =="" or password_master=="":
+            return render_template("home.html", error="Please fill all fields")
+
         #check if user already exists
         user = User.query.filter_by(username=username).first()
 
         if not user or not user.check_password(password_master):
-            return "Invalid username or password"
+            return render_template("home.html", error="Invalid username or password")
         
         session['user_id']=user.id
 
