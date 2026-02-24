@@ -19,7 +19,7 @@ def register():
     #check if user already exists
     user = User.query.filter_by(username=username).first()
     if user:
-        return "Username already exists"
+        return render_template("register.html" , username=username)
     
     #create new user
     new_user=User()
