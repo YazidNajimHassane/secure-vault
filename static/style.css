@@ -114,3 +114,8 @@ th {
     color: #e94560;
     padding: 10px;
 }
+p{
+    color: red;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
