@@ -20,6 +20,9 @@
         <input type="button" value="login" class="btn btn_login" onclick="setactionform('login')">
         <input type="button" value="register" class="btn btn_register" onclick="setactionform('register')">
     </form>
+    {% if error %}
+        <p >{{ error }} ! ! !</p>
+    {% endif %}
 </div>
 <script>
     function setactionform(action){
