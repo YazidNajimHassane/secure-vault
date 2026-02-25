@@ -8,6 +8,7 @@ class User(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     username=db.Column(db.String(25),nullable=False)
     password_master=db.Column(db.String(150),nullable=False)
+    profile_pic=db.Column(db.String(300), nullable=False)
 
     #the link to the Password table 
     passwords = db.relationship('Password',backref='user' , lazy=True)
