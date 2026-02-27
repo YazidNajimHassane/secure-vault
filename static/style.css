@@ -3,18 +3,31 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     color: #ededed;
 }
-
-.container {
+.container{
     margin: 80px auto;
     padding: 50px ;
     display: block;
     border: 1px solid #1f1f1f;
     border-radius: 16px;
-    max-width: 550px;
+    max-width: 550px ;
     text-align: center;
     box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 20px 60px rgba(0,0,0,0.5);
     background-color: #111111;
 }
+
+.passwordContainer{
+    margin: 80px auto;
+    padding: 50px ;
+    display: block;
+    border: 1px solid #1f1f1f;
+    border-radius: 16px;
+    max-width: 900px ;
+    text-align: center;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 20px 60px rgba(0,0,0,0.5);
+    background-color: #111111;
+}
+
+
 
 .inputs {
     width: 100%;
@@ -54,7 +67,7 @@ h1 {
 .btn {
     padding: 10px 16px;
     margin: 8px auto;
-    width: 44%;
+    width: auto;
     border-radius: 8px;
     border: none;
     cursor: pointer;
