@@ -25,5 +25,6 @@ class Password(db.Model):
     site_name=db.Column(db.String(100),nullable=False)
     encrypted_password=db.Column(db.String(100),nullable=False)
     iv=db.Column(db.Integer ,nullable=False)
-    Strength = db.Column(db.Integer,nullable=False)
+    Strength = db.Column(db.String,nullable=False)
+    Feedback = db.Column(db.String,nullable=False)
     user_id=db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False)
