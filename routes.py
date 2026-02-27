@@ -2,7 +2,7 @@ from flask import render_template , redirect , url_for , request , session
 from werkzeug.security import check_password_hash , generate_password_hash
 from app import app , db 
 from  models import User , Password
-from encryption import encrypt_password , decrypt_password
+from encryption import encrypt_password , decrypt_password , check_Strength
 
 #home route
 @app.route('/' , methods=["POST" , "GET"])
@@ -69,8 +69,9 @@ def dashboard():
         decrypted.append({
             'id':p.id,
             'site_name':p.site_name,
-            'password':decrypt_password(p.iv,p.encrypted_password)
-
+            'password':decrypt_password(p.iv,p.encrypted_password),
+            'Strength':p.Strength,
+            'Feedback':p.Feedback
         })
     return render_template("dashboard.html" , passwords=decrypted)
 
@@ -94,6 +95,13 @@ def add_password():
         new_password.encrypted_password=ciphertext
         new_password.iv=iv
         new_password.user_id=session['user_id']
+
+
+
+        Strength,Feedback=check_Strength(password)
+
+        new_password.Strength=Strength
+        new_password.Feedback=" , ".join(Feedback)
 
         db.session.add(new_password)
         db.session.commit()
