@@ -1,6 +1,6 @@
 {% extends "base.html"%}
 {%block body%}
-<div class="container">
+<div class="passwordContainer">
     {% if passwords | length  < 1 %}
         <h1>There are no passwords saved </h1>
     {%else%}
@@ -11,6 +11,8 @@
                 <th>Site_name</th>
                 <th>Password</th>
                 <th>Optional action</th>
+                <th>Password Strength</th>
+                <th>Feedback</th>
             </tr>
             {%for p in passwords %}
                 <tr>
@@ -22,6 +24,8 @@
                             <button type="submit" class="btn btn_delete">Delete</button>
                         </form>
                     </td>
+                    <td>{{p.Strength}}</td>
+                    <td>{{p.Feedback}}</td>
                 </tr>
             {%endfor%}
         </table>
