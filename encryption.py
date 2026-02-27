@@ -47,12 +47,15 @@ def check_Strength(password):
     else:
         feedback.append("Add  numbers")
 
-    if re.search(r'[&#~{}()[]|`\^@^$*<>:;!,§.%]',password) : 
+    if re.search(r'[&#~{}()\'\[\]|`\\^@^$*<>:;!,§.%]',password) : 
         score+=1
     else:
         feedback.append("Add special characters")
 
     levels={1:"Very Weak" ,2:"Weak" ,3:"Fair" ,4:"Strong" ,5:"very Strong" }
+
+    if feedback==[]:
+        feedback.append("✅")
 
     return levels[score] , feedback
     
