@@ -122,6 +122,9 @@ td {
     padding: 14px 12px;
     border-bottom: 1px solid #1f1f1f;
     font-size: 0.9rem;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
 }
 
 th {
@@ -144,4 +147,28 @@ th {
     color: green;
     font-size: 1.3rem;
     font-weight: bold;
+}
+
+.inputs_modify{
+    width: 70%;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    margin: 0;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    color: #ededed;
+    background-color: #1a1a1a;
+    outline: none;
+    transition: border 0.2s;
+    align-items: center;
+
+    display: block;
+    margin: 0 auto;
+}
+
+
+.inputs_modify:focus {
+    border: 1px solid #888;
 }
