@@ -18,7 +18,7 @@
                 <tr>
                     <td>{{p.id}}</td>
                     <td>{{p.site_name}}</td>
-                    <td>{{p.password}}</td>    
+                    <td class="pass" data-id="{{p.id}}">{{p.password}}</td>    
                     <td>
                         <form action="{{url_for('remove_password',id=p.id)}}" method="POST">
                             <button type="submit" class="btn btn_delete">Delete</button>
@@ -35,5 +35,32 @@
         <button type="submit" class="btn btn_logout"> LogOut</button>
     </form>
 </div>
+    <script>
+        document.querySelectorAll('.pass').forEach(password=>{
+            password.addEventListener("dblclick",()=>{
+                let input = document.createElement("input")
+                input.classList="inputs_modify"
+                input.type="text";
+                input.value=password.textContent;
+                password.replaceWith(input);
+                input.focus()
     
+                input.addEventListener("keydown",(e)=>{
+                    if(e.key==="Enter"){
+                        let form = document.createElement('form')
+                        form.method='post'
+                        let id = password.dataset.id
+                        form.action='edit_password/'+ id
+                        let input_f= document.createElement("input")
+                        input_f.name="password"
+                        input_f.value=input.value
+    
+                        form.appendChild(input_f)
+                        document.body.appendChild(form)
+                        form.submit()
+                    }
+                })
+            })
+        })
+    </script>
 {%endblock%}
