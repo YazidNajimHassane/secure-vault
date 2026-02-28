@@ -132,3 +132,27 @@ def remove_password(id):
 def logout():
     session.clear()
     return redirect(url_for("login"))
+
+
+#the password edit route
+@app.route('/edit_password/<int:id>',methods=['POST'])
+def edit_password(id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
+    new_password=request.form.get('password')
+    p =Password.query.get(id)
+
+    if p.user_id != session["user_id"]:
+        return "Unauthorized"
+    iv , ciphertext=encrypt_password(new_password)
+    p.encrypted_password=ciphertext
+    p.iv=iv
+    Strength,Feedback=check_Strength(new_password)
+
+    p.Strength=Strength
+    p.Feedback=" , ".join(Feedback)
+
+    db.session.commit()
+    
+    return redirect(url_for("dashboard"))
