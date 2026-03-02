@@ -10,22 +10,22 @@
                 <th>Id</th>
                 <th>Site_name</th>
                 <th>Password</th>
-                <th>Optional action</th>
                 <th>Password Strength</th>
                 <th>Feedback</th>
+                <th>Optional action</th>
             </tr>
             {%for p in passwords %}
                 <tr>
                     <td>{{p.id}}</td>
                     <td>{{p.site_name}}</td>
                     <td class="pass" data-id="{{p.id}}">{{p.password}}</td>    
+                    <td>{{p.Strength}}</td>
+                    <td>{{p.Feedback}}</td>
                     <td>
                         <form action="{{url_for('remove_password',id=p.id)}}" method="POST">
                             <button type="submit" class="btn btn_delete">Delete</button>
                         </form>
                     </td>
-                    <td>{{p.Strength}}</td>
-                    <td>{{p.Feedback}}</td>
                 </tr>
             {%endfor%}
         </table>
