@@ -30,33 +30,31 @@ def check_Strength(password):
     if len(password)>=8 :
         score +=1
     else:
-        feedback.append("Too short (mi 8)")
+        feedback.append("Too short (min 8 characters)")
 
     if re.search(r'[A-Z]',password) : 
         score+=1
     else:
-        feedback.append("Add Uppercase latters")
+        feedback.append("Add uppercase letters")
 
     if re.search(r'[a-z]',password) : 
         score+=1
     else:
-        feedback.append("Add Lowerrcase latters")
+        feedback.append("Add lowercase letters")
 
     if re.search(r'[0-9]',password) : 
         score+=1
     else:
-        feedback.append("Add  numbers")
+        feedback.append("Add numbers")
 
     if re.search(r'[&#~{}()\'\[\]|`\\^@^$*<>:;!,§.%]',password) : 
         score+=1
     else:
         feedback.append("Add special characters")
 
-    levels={1:"Very Weak" ,2:"Weak" ,3:"Fair" ,4:"Strong" ,5:"very Strong" }
+    levels={1:"Very Weak" ,2:"Weak" ,3:"Fair" ,4:"Strong" ,5:"Very Strong" }
 
     if feedback==[]:
         feedback.append("✅")
 
     return levels[score] , feedback
-    
-    
