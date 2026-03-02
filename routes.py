@@ -13,26 +13,27 @@ def home():
 #register route
 @app.route('/register' , methods=["POST" , "GET"])
 def register():
-    username = request.form.get("username")
-    password_master = request.form.get("password")
+    if request.method == "POST":
+        username = request.form.get("username").strip()
+        password_master = request.form.get("password")
 
-    if username =="" or password_master=="":
-        return render_template("home.html", error="Please fill all fields")
+        if username =="" or password_master=="":
+            return render_template("home.html", error="Please fill all fields")
 
-    #check if user already exists
-    user = User.query.filter_by(username=username).first()
-    if user:
-        return render_template("register.html" , username=username)
-    
-    #create new user
-    new_user=User()
-    new_user.username=username
-    new_user.set_password(password_master)
+        #check if user already exists
+        user = User.query.filter_by(username=username).first()
+        if user:
+            return render_template("register.html" , username=username)
+        
+        #create new user
+        new_user=User()
+        new_user.username=username
+        new_user.set_password(password_master)
 
-    db.session.add(new_user)
-    db.session.commit()
-    
-    return render_template("home.html", succes="You have been successfully registered")
+        db.session.add(new_user)
+        db.session.commit()
+        return render_template("home.html", success="You have been successfully registered")
+    return render_template("home.html")
 
 
 
