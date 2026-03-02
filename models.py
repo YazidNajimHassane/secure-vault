@@ -6,7 +6,7 @@ db=SQLAlchemy()
 
 class User(db.Model):
     id=db.Column(db.Integer,primary_key=True)
-    username=db.Column(db.String(25),nullable=False)
+    username = db.Column(db.String(25), nullable=False, unique=True)
     password_master=db.Column(db.String(150),nullable=False)
     #profile_pic=db.Column(db.String(300), nullable=False)
 
@@ -24,7 +24,7 @@ class Password(db.Model):
     id=db.Column(db.Integer , primary_key=True)
     site_name=db.Column(db.String(100),nullable=False)
     encrypted_password=db.Column(db.String(100),nullable=False)
-    iv=db.Column(db.Integer ,nullable=False)
+    iv=db.Column(db.LargeBinary ,nullable=False)
     Strength = db.Column(db.String,nullable=False)
     Feedback = db.Column(db.String,nullable=False)
     user_id=db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False)
