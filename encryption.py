@@ -4,9 +4,17 @@ from dotenv import load_dotenv
 import os
 import re
 
-load_dotenv()
-key= os.environ.get('AES_KEY').encode()
+def validate_AES_key(key):
+    if not key:
+        raise ValueError("AES_KEY is not set in environment variables")
+    key = key.encode()
+    if len(key) not in (16, 24, 32):
+        raise ValueError(f"AES_KEY must be 16, 24, or 32 bytes, got {len(key)} bytes")
+    return key
 
+load_dotenv()
+key = os.environ.get('AES_KEY')
+key = validate_AES_key(key)
 
 #encryption function
 def encrypt_password(data):
