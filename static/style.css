@@ -72,7 +72,7 @@ h1 {
     opacity: 0.55;
 }
 .btn:active {
-    transform: scale(0.97);
+    transform: scale(0.95);
 }
 .btn_register {
     background-color: #3d5c4a;
