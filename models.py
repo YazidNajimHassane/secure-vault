@@ -3,7 +3,7 @@ from  werkzeug.security import check_password_hash , generate_password_hash
 
 
 db=SQLAlchemy()
-
+#user model 
 class User(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     username=db.Column(db.String(25),nullable=False)
@@ -19,7 +19,7 @@ class User(db.Model):
     def check_password(self , password):
         return check_password_hash(self.password_master,password)
     
-
+#Password model 
 class Password(db.Model):
     id=db.Column(db.Integer , primary_key=True)
     site_name=db.Column(db.String(100),nullable=False)
